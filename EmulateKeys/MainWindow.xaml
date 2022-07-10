@@ -4,9 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmulateKeys"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="640" Width="620"
-        ShowActivated="False" Topmost="True">
+        Title="MainWindow" Height="640" Width="820"
+        ShowActivated="False" Topmost="True"
+        ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="Delta" TargetType="{x:Type FrameworkElement}">
+            <Setter Property="Grid.Row" Value="2"/>
+            <Setter Property="Grid.Column" Value="0"/>
+        </Style>
+
+
+    </Window.Resources>
     <Grid HorizontalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="200"/>
@@ -17,20 +27,21 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
 
         <Ellipse Grid.Column="0" Grid.Row="1" Fill="#dc63f7" Margin="5"/>
         <TextBlock Text="□" Grid.Column="0" Grid.Row="1" FontSize="70"
                    TextAlignment="Center" VerticalAlignment="Center"/>
         <Ellipse x:Name="LeftSquarePanel" Grid.Column="0" Grid.Row="1"
-                 Margin="5" Tag="65"
+                 Fill="#01000000" Margin="5" Tag="65"
                  PreviewTouchDown="Panel_PreviewTouchDown"
                  PreviewTouchUp="Panel_PreviewTouchUp"/>
 
-        <Ellipse Grid.Column="1" Grid.Row="0" Fill="#32a852" Margin="5"/>
-        <TextBlock Text="△" Grid.Column="1" Grid.Row="0" FontSize="70"
+        <Ellipse Fill="#32a852" Margin="5" Style="{StaticResource Delta}"/>
+        <TextBlock Text="△" Style="{StaticResource Delta}"
                    TextAlignment="Center" VerticalAlignment="Center"/>
-        <Ellipse x:Name="TopDeltaPanel" Grid.Column="1" Grid.Row="0"
+        <Ellipse x:Name="TopDeltaPanel" Style="{StaticResource Delta}"
                  Fill="#01000000" Margin="5" Tag="87"
                  PreviewTouchDown="Panel_PreviewTouchDown"
                  PreviewTouchUp="Panel_PreviewTouchUp"/>
@@ -75,10 +86,10 @@
                  PreviewTouchDown="Panel_PreviewTouchDown"
                  PreviewTouchUp="Panel_PreviewTouchUp"/>
 
-        <Ellipse Grid.Column="0" Grid.Row="2" Fill="LightPink" Margin="5"/>
-        <TextBlock Text="Esc" Grid.Column="0" Grid.Row="2" FontSize="50"
+        <Ellipse Grid.Column="0" Grid.Row="1" Fill="LightPink" Margin="5"/>
+        <TextBlock Text="Esc" Grid.Column="0" Grid.Row="1" FontSize="50"
                    TextAlignment="Center" VerticalAlignment="Center"/>
-        <Ellipse x:Name="EscPanel" Grid.Column="0" Grid.Row="2" 
+        <Ellipse x:Name="EscPanel" Grid.Column="0" Grid.Row="1" 
                  Fill="#01000000" Margin="5" Tag="27"
                  PreviewTouchDown="Panel_PreviewTouchDown"
                  PreviewTouchUp="Panel_PreviewTouchUp"/>
