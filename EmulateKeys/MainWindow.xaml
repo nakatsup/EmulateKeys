@@ -8,14 +8,21 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="640" Width="820"
         ShowActivated="False" Topmost="True"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize" AllowsTransparency="True"
+        Background="#01000000" WindowStyle="None"
+        PreviewMouseDown="Window_PreviewMouseDown">
     <Window.Resources>
-        <Style x:Key="Delta" TargetType="{x:Type FrameworkElement}">
-            <Setter Property="Grid.Row" Value="2"/>
-            <Setter Property="Grid.Column" Value="0"/>
+        <system:Double x:Key="KeyFontSize">70</system:Double>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="{StaticResource KeyFontSize}"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
-
-
+        <Style x:Key="touchButtonStyle" TargetType="{x:Type Shape}">
+            <Setter Property="Fill" Value="#01000000"/>
+            <EventSetter Event="PreviewTouchDown" Handler="Panel_PreviewTouchDown"/>
+            <EventSetter Event="PreviewTouchUp" Handler="Panel_PreviewTouchUp"/>
+        </Style>
     </Window.Resources>
     <Grid HorizontalAlignment="Center">
         <Grid.RowDefinitions>
@@ -30,71 +37,60 @@
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
 
-        <Ellipse Grid.Column="0" Grid.Row="1" Fill="#dc63f7" Margin="5"/>
-        <TextBlock Text="□" Grid.Column="0" Grid.Row="1" FontSize="70"
-                   TextAlignment="Center" VerticalAlignment="Center"/>
-        <Ellipse x:Name="LeftSquarePanel" Grid.Column="0" Grid.Row="1"
-                 Fill="#01000000" Margin="5" Tag="65"
-                 PreviewTouchDown="Panel_PreviewTouchDown"
-                 PreviewTouchUp="Panel_PreviewTouchUp"/>
+        <Grid Grid.Column="0" Grid.Row="2" Margin="5">
+            <Ellipse Fill="#3332a852"/>
+            <TextBlock Text="△"/>
+            <Ellipse Tag="87" Style="{StaticResource touchButtonStyle}"/>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="2" Margin="5">
+            <Ellipse  Fill="#33dc63f7"/>
+            <TextBlock Text="□"/>
+            <Ellipse Tag="65" Style="{StaticResource touchButtonStyle}"/>
+        </Grid>
+        <Grid Grid.Column="2" Grid.Row="2" Margin="5">
+            <Ellipse Fill="#335285f2"/>
+            <TextBlock Text="×"/>
+            <Ellipse Tag="83" Style="{StaticResource touchButtonStyle}"/>
+        </Grid>
+        <Grid Grid.Column="3" Grid.Row="2" Margin="5">
+            <Ellipse Fill="#33f74040"/>
+            <TextBlock Text="〇"/>
+            <Ellipse Tag="68" Style="{StaticResource touchButtonStyle}"/>
+        </Grid>
 
-        <Ellipse Fill="#32a852" Margin="5" Style="{StaticResource Delta}"/>
-        <TextBlock Text="△" Style="{StaticResource Delta}"
-                   TextAlignment="Center" VerticalAlignment="Center"/>
-        <Ellipse x:Name="TopDeltaPanel" Style="{StaticResource Delta}"
-                 Fill="#01000000" Margin="5" Tag="87"
-                 PreviewTouchDown="Panel_PreviewTouchDown"
-                 PreviewTouchUp="Panel_PreviewTouchUp"/>
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Ellipse Fill="#33fae739" Margin="5"/>
+            <TextBlock Text="＜＜＜"  FontSize="50"/>
+            <Ellipse Tag="81" Style="{StaticResource touchButtonStyle}"/>
+        </Grid>
+        <Grid Grid.Column="2" Grid.Row="1" Margin="5">
+            <Ellipse Fill="#33fae739"/>
+            <TextBlock Text="＞＞＞" FontSize="50"/>
+            <Ellipse Tag="69" Style="{StaticResource touchButtonStyle}"/>
+        </Grid>
 
-        <Ellipse Grid.Column="1" Grid.Row="2" Fill="#5285f2" Margin="5"/>
-        <TextBlock Text="×" Grid.Column="1" Grid.Row="2" FontSize="70"
-                   TextAlignment="Center" VerticalAlignment="Center"/>
-        <Ellipse x:Name="BottomCrossPanel" Grid.Column="1" Grid.Row="2"
-                 Fill="#01000000" Margin="5" Tag="83"
-                 PreviewTouchDown="Panel_PreviewTouchDown"
-                 PreviewTouchUp="Panel_PreviewTouchUp"/>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Ellipse Fill="#33fae739" Margin="5"/>
+            <TextBlock Text="＜＜＜"  FontSize="50"/>
+            <Ellipse Tag="73" Style="{StaticResource touchButtonStyle}"/>
+        </Grid>
+        <Grid Grid.Column="3" Grid.Row="1" Margin="5">
+            <Ellipse Fill="#33fae739"/>
+            <TextBlock Text="＞＞＞" FontSize="50"/>
+            <Ellipse Tag="80" Style="{StaticResource touchButtonStyle}"/>
+        </Grid>
 
-        <Ellipse Grid.Column="2" Grid.Row="1" Fill="#f74040" Margin="5"/>
-        <TextBlock Text="〇" Grid.Column="2" Grid.Row="1" FontSize="70"
-                   TextAlignment="Center" VerticalAlignment="Center"/>
-        <Ellipse x:Name="RightEllipsePanel" Grid.Column="2" Grid.Row="1" 
-                 Fill="#01000000" Margin="5" Tag="68"
-                 PreviewTouchDown="Panel_PreviewTouchDown"
-                 PreviewTouchUp="Panel_PreviewTouchUp"/>
-
-        <Ellipse Grid.Column="0" Grid.Row="0" Fill="#fae739" Margin="5"/>
-        <TextBlock Text="＜＜＜"  Grid.Column="0" Grid.Row="0" FontSize="50"
-                   TextAlignment="Center" VerticalAlignment="Center"/>
-        <Ellipse x:Name="LeftArrowPanel" Grid.Column="0" Grid.Row="0"
-                 Fill="#01000000" Margin="5" Tag="81"
-                 PreviewTouchDown="Panel_PreviewTouchDown"
-                 PreviewTouchUp="Panel_PreviewTouchUp"/>
-
-        <Ellipse Grid.Column="2" Grid.Row="0" Fill="#fae739" Margin="5"/>
-        <TextBlock Text="＞＞＞" Grid.Column="2" Grid.Row="0" FontSize="50"
-                   TextAlignment="Center" VerticalAlignment="Center"/>
-        <Ellipse x:Name="RightArrowPanel" Grid.Column="2" Grid.Row="0" 
-                 Fill="#01000000" Margin="5" Tag="69"
-                 PreviewTouchDown="Panel_PreviewTouchDown"
-                 PreviewTouchUp="Panel_PreviewTouchUp"/>
-
-        <Ellipse Grid.Column="2" Grid.Row="2" Fill="LightBlue" Margin="5"/>
-        <TextBlock Text="Enter" Grid.Column="2" Grid.Row="2" FontSize="50"
-                   TextAlignment="Center" VerticalAlignment="Center"/>
-        <Ellipse x:Name="EnterPanel" Grid.Column="2" Grid.Row="2" 
-                 Fill="#01000000" Margin="5" Tag="13"
-                 PreviewTouchDown="Panel_PreviewTouchDown"
-                 PreviewTouchUp="Panel_PreviewTouchUp"/>
-
-        <Ellipse Grid.Column="0" Grid.Row="1" Fill="LightPink" Margin="5"/>
-        <TextBlock Text="Esc" Grid.Column="0" Grid.Row="1" FontSize="50"
-                   TextAlignment="Center" VerticalAlignment="Center"/>
-        <Ellipse x:Name="EscPanel" Grid.Column="0" Grid.Row="1" 
-                 Fill="#01000000" Margin="5" Tag="27"
-                 PreviewTouchDown="Panel_PreviewTouchDown"
-                 PreviewTouchUp="Panel_PreviewTouchUp"/>
-
-        <Grid Grid.Row="1" Grid.Column="1">
+        <Grid Grid.Column="1" Grid.Row="0" Margin="5">
+            <Ellipse Fill="#33ADD8E6"/>
+            <TextBlock Text="Enter" FontSize="50"/>
+            <Ellipse Tag="13" Style="{StaticResource touchButtonStyle}"/>
+        </Grid>
+        <Grid Grid.Column="0" Grid.Row="0" Margin="5">
+            <Ellipse Fill="#33FFB6C1"/>
+            <TextBlock Text="Esc" FontSize="50"/>
+            <Ellipse Tag="27" Style="{StaticResource touchButtonStyle}"/>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="3">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -105,34 +101,30 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Rectangle Grid.Column="1" Grid.Row="0" Fill="Gray" Margin="0"/>
-            <TextBlock Text="↑" Grid.Column="1" Grid.Row="0" FontSize="50"
-                       TextAlignment="Center" VerticalAlignment="Center"/>
-            <Rectangle x:Name="UpPanel" Grid.Column="1" Grid.Row="0"
-                       Fill="#01000000" Margin="2" Tag="38"
-                       PreviewTouchDown="Panel_PreviewTouchDown"
-                       PreviewTouchUp="Panel_PreviewTouchUp"/>
-            <Rectangle Grid.Column="1" Grid.Row="2" Fill="Gray" Margin="0"/>
-            <TextBlock Text="↓" Grid.Column="1" Grid.Row="2" FontSize="50"
-                       TextAlignment="Center" VerticalAlignment="Center"/>
-            <Rectangle x:Name="DownPanel" Grid.Column="1" Grid.Row="2"
-                       Fill="#01000000" Margin="2" Tag="40"
-                       PreviewTouchDown="Panel_PreviewTouchDown"
-                       PreviewTouchUp="Panel_PreviewTouchUp"/>
-            <Rectangle Grid.Column="0" Grid.Row="1" Fill="Gray" Margin="0"/>
-            <TextBlock Text="←" Grid.Column="0" Grid.Row="1" FontSize="50"
-                       TextAlignment="Center" VerticalAlignment="Center"/>
-            <Rectangle x:Name="LeftPanel" Grid.Column="0" Grid.Row="1"
-                       Fill="#01000000" Margin="2" Tag="37"
-                       PreviewTouchDown="Panel_PreviewTouchDown"
-                       PreviewTouchUp="Panel_PreviewTouchUp"/>
-            <Rectangle Grid.Column="2" Grid.Row="1" Fill="Gray" Margin="0"/>
-            <TextBlock Text="→" Grid.Column="2" Grid.Row="1" FontSize="50"
-                       TextAlignment="Center" VerticalAlignment="Center"/>
-            <Rectangle x:Name="RightPanel" Grid.Column="2" Grid.Row="1"
-                       Fill="#01000000" Margin="2" Tag="39"
-                       PreviewTouchDown="Panel_PreviewTouchDown"
-                       PreviewTouchUp="Panel_PreviewTouchUp"/>
+            <Grid Grid.Column="1" Grid.Row="0">
+                <Rectangle  Fill="#33808080"/>
+                <TextBlock Text="↑" FontSize="50"/>
+                <Rectangle Tag="38" Style="{StaticResource touchButtonStyle}"/>
+            </Grid>
+            <Grid Grid.Column="1" Grid.Row="2">
+                <Rectangle  Fill="#33808080"/>
+                <TextBlock Text="↓" FontSize="50"/>
+                <Rectangle Tag="40" Style="{StaticResource touchButtonStyle}"/>
+            </Grid>
+            <Grid Grid.Column="0" Grid.Row="1">
+                <Rectangle Fill="#33808080"/>
+                <TextBlock Text="←" FontSize="50"/>
+                <Rectangle Tag="37" Style="{StaticResource touchButtonStyle}"/>
+            </Grid>
+            <Grid Grid.Column="2" Grid.Row="1">
+                <Rectangle Fill="#33808080"/>
+                <TextBlock Text="→" FontSize="50"/>
+                <Rectangle Tag="39" Style="{StaticResource touchButtonStyle}"/>
+            </Grid>
+            <Button Grid.Column="2" FontFamily="Marlett" Content="r" Width="25" Height="25"
+                    Background="Transparent" Foreground="Red" VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Click="CloseButton_Click"/>
         </Grid>
     </Grid>
 </Window>

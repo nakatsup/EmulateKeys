@@ -65,5 +65,15 @@ namespace EmulateKeys
                 ? (Int16)0
                 : Convert.ToInt16(button.Tag);
         }
+
+        private void Window_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
